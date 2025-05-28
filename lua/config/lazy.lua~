@@ -40,7 +40,6 @@ vim.opt.splitright = true -- where to split the buffers
 vim.opt.virtualedit = onemore -- should allow the cursor to move one character beyond the end of the line, but does not
 vim.opt.visualbell = true
 
-
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
@@ -53,3 +52,9 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
