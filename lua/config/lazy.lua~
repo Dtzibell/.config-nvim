@@ -21,6 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<leader>px", vim.cmd.Ex) -- opens netrw
+vim.keymap.set("i", "<TAB>", "C-y")
 
 -- option set up
 vim.opt.backup = true -- creates a ~ appended file for each opened file
