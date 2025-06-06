@@ -46,7 +46,7 @@ vim.api.nvim_command("set confirm") -- confirm on close
 vim.api.nvim_command("set cursorline") -- highlight cursor line
 vim.opt.cursorlineopt = "both"
 vim.opt.gdefault = true -- all matches in a line are substituted by default
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 vim.opt.ignorecase = true -- ignore case on search by default
 vim.opt.inccommand = split -- opens partial results of replacement in a preview window
 vim.opt.mouse = nvic
