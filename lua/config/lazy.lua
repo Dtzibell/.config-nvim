@@ -23,8 +23,6 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<leader>px", vim.cmd.Ex) -- opens netrw
 
 -- option set up
-vim.opt.backup = true -- creates a ~ appended file for each opened file
-
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
