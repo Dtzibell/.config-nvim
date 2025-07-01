@@ -1,2 +1,2 @@
-VS code got annoying
+dotfiles
 =====
