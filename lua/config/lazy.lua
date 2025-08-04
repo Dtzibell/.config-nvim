@@ -78,7 +78,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python"},
+  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python", "java"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
