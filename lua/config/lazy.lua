@@ -92,3 +92,4 @@ require('nvim-treesitter.configs').setup {
 
  },
 }
+vim.lsp.enable("pyright")
