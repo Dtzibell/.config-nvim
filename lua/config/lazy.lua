@@ -55,7 +55,6 @@ vim.opt.scrolloff = 5
 vim.opt.splitright = true -- where to split the buffers
 vim.opt.virtualedit = onemore -- should allow the cursor to move one character beyond the end of the line, but does not
 vim.opt.visualbell = true
-local extension = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":e")
 -- 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -94,9 +93,9 @@ require('nvim-treesitter.configs').setup {
  },
 }
 vim.lsp.enable("pyright")
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "java",
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.java",
     callback = function()
-        vim.b.coc_suggest_disable = 1
+        vim.b.completion = false
     end,
 })
