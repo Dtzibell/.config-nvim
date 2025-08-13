@@ -18,7 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
+vim.g.mapleader = ";"
+vim.g.leader = ";"
 vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<leader>px", vim.cmd.Ex) -- opens netrw
 
@@ -93,9 +94,102 @@ require('nvim-treesitter.configs').setup {
  },
 }
 vim.lsp.enable("pyright")
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = "*.java",
-    callback = function()
-        vim.b.completion = false
-    end,
+
+
+local ls = require("luasnip")
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
+vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
+vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
+
+
+local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local r = ls.restore_node
+local events = require("luasnip.util.events")
+local ai = require("luasnip.nodes.absolute_indexer")
+local extras = require("luasnip.extras")
+local l = extras.lambda
+local rep = extras.rep
+local p = extras.partial
+local m = extras.match
+local n = extras.nonempty
+local dl = extras.dynamic_lambda
+local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
+local conds = require("luasnip.extras.expand_conditions")
+local postfix = require("luasnip.extras.postfix").postfix
+local types = require("luasnip.util.types")
+local parse = require("luasnip.util.parser").parse_snippet
+local ms = ls.multi_snippet
+local k = require("luasnip.nodes.key_indexer").new_key
+
+ls.setup{
+  keep_roots = true,
+  link_children = true,
+  link_roots = true,
+
+  update_events = "TextChanged, TextChangedI",
+  enable_autosnippets = true,
+  history = true,
+}
+
+ls.add_snippets("all", {
+  s("trig", {
+    t("wow")
+  })
 })
+ls.add_snippets("java", {
+  s({trig = (vim.g.mapleader or ";") .. "init", snippetType = "autosnippet"},
+    fmta([[
+    package com.dtzi.app,
+    
+    public class <> {
+    \tpublic static void main (String[] args) {
+    \t}
+    }]], {
+    i(1, "App")
+    }, {
+    indent_string = [[\t]]
+    })
+  ),
+  s({trig = (vim.g.mapleader or ";") .. "fn", snippetType = "autosnippet"},
+    fmta([[
+    <> <><> <> (<>) {
+    }
+      ]], {
+        c(1, {
+          t"public",
+          t"private"
+        }),
+        c(2, {
+          t"",
+          t"static "
+        }),
+        i(3, "type"),
+        i(4, "name"),
+        i(0, "args")
+      }
+    )
+  )
+})
+
+require('java').setup()
+require('lspconfig').jdtls.setup({})

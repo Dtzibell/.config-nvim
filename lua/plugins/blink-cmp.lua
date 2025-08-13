@@ -1,7 +1,7 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
 
   -- use a release tag to download pre-built binaries
   version = '1.*',
@@ -13,6 +13,7 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    snippets = { preset = 'luasnip'},
     -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
     -- 'super-tab' for mappings similar to vscode (tab to accept)
     -- 'enter' for enter to accept
@@ -34,7 +35,7 @@ return {
     },
 
     -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = false } },
+    completion = { documentation = { auto_show = true } },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
