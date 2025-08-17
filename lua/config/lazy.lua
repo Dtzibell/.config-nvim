@@ -151,45 +151,6 @@ ls.setup{
   history = true,
 }
 
-ls.add_snippets("all", {
-  s("trig", {
-    t("wow")
-  })
-})
-ls.add_snippets("java", {
-  s({trig = (vim.g.mapleader or ";") .. "init", snippetType = "autosnippet"},
-    fmta([[
-    package com.dtzi.app,
-    
-    public class <> {
-    \tpublic static void main (String[] args) {
-    \t}
-    }]], {
-    i(1, "App")
-    }, {
-    indent_string = [[\t]]
-    })
-  ),
-  s({trig = (vim.g.mapleader or ";") .. "fn", snippetType = "autosnippet"},
-    fmta([[
-    <> <><> <> (<>) {
-    }
-      ]], {
-        c(1, {
-          t"public",
-          t"private"
-        }),
-        c(2, {
-          t"",
-          t"static "
-        }),
-        i(3, "type"),
-        i(4, "name"),
-        i(0, "args")
-      }
-    )
-  )
-})
-
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})
 require('java').setup()
 require('lspconfig').jdtls.setup({})
