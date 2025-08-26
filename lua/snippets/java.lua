@@ -11,7 +11,7 @@ end
 return {
   s({trig = (vim.g.mapleader or ";") .. "init", snippetType = "autosnippet"},
     fmta([[
-    package com.dtzi.app,
+    package com.dtzi.app;
     
     public class <> {
     \tpublic static void main (String[] args) {
