@@ -154,3 +154,5 @@ ls.setup{
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})
 require('java').setup()
 require('lspconfig').jdtls.setup({})
+
+vim.g.mkdp_auto_start = 1
