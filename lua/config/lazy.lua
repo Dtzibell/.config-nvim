@@ -18,6 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
+
+local buffer_ft = vim.fn.expand("%:e")
+
 vim.g.mapleader = ";"
 vim.g.leader = ";"
 vim.g.maplocalleader = "\\"
@@ -30,14 +33,19 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-vim.opt.wrap = false
+
+if buffer_ft ~= ".md" then
+  vim.opt.wrap = true
+else
+  vim.opt.wrap = false
+  vim.opt.colorcolumn = "80"
+end
 
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 100
-vim.opt.colorcolumn = "80"
 
 vim.opt.clipboard = unnamedplus -- initializes clipboard
 vim.opt.cmdheight = 3 -- cmdline height
