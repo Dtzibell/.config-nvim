@@ -79,7 +79,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python", "java", "bash"},
+  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python", "java", "bash", "xml"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -93,6 +93,7 @@ require('nvim-treesitter.configs').setup {
 
  },
 }
+vim.treesitter.language.register("xml", "fxml")
 vim.lsp.enable("pyright")
 
 
@@ -154,5 +155,15 @@ ls.setup{
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})
 require('java').setup()
 require('lspconfig').jdtls.setup({})
+vim.filetype.add({
+  extension = {fxml = "fxml",},
+})
+vim.lsp.config["lemminx"] = {
+  filetypes = {"xml", "xsd", "xsl", "xslt", "svg", "fxml" },
+}
+vim.lsp.enable("lemminx")
 
 vim.g.mkdp_auto_start = 1
+
+vim.keymap.set("n", "gd", "<cmd> lua vim.lsp.buf.definition() <CR>") 
+vim.keymap.set("n", "gD", "<cmd> lua vim.lsp.buf.declaration() <CR>")
