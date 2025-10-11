@@ -1,4 +1,5 @@
 -- Bootstrap lazy.nvim
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -161,8 +162,6 @@ ls.setup{
 }
 
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})
-require('java').setup()
-require('lspconfig').jdtls.setup({})
 vim.filetype.add({
   extension = {fxml = "fxml",},
 })
@@ -170,6 +169,30 @@ vim.lsp.config["lemminx"] = {
   filetypes = {"xml", "xsd", "xsl", "xslt", "svg", "fxml" },
 }
 vim.lsp.enable("lemminx")
+vim.lsp.config["luals"] = {
+  cmd = { 'lua-language-server' },
+  filetypes = { "lua" },
+}
+vim.lsp.enable("luals")
+vim.lsp.config["jdtls"] = {
+  settings = {
+    java = {
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-25",
+            path = "/home/dtzi/Documents/jdk-25/"
+          },
+          {
+            name = "JavaSE-21",
+            path = "/home/dtzi/Documents/jdk-21/"
+          },
+        },
+      },
+    },
+  },
+}
+vim.lsp.enable("jdtls")
 
 vim.g.mkdp_auto_start = 1
 
