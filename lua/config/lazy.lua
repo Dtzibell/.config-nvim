@@ -71,6 +71,7 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
+		{ import = "plugins/colorschemes" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -102,6 +103,12 @@ require('nvim-treesitter.configs').setup {
 
  },
 }
+
+require("themery").setup({
+  themes = {"everforest", "gruvbox", "cyberdream"},
+  livePreview=true,
+})
+
 vim.treesitter.language.register("xml", "fxml")
 vim.lsp.enable("pyright")
 
@@ -163,7 +170,7 @@ ls.setup{
 
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})
 vim.filetype.add({
-  extension = {fxml = "fxml",},
+  extension = {fxml = "fxml", racket = ".rkt"},
 })
 vim.lsp.config["lemminx"] = {
   filetypes = {"xml", "xsd", "xsl", "xslt", "svg", "fxml" },
@@ -175,17 +182,18 @@ vim.lsp.config["luals"] = {
 }
 vim.lsp.enable("luals")
 vim.lsp.config["jdtls"] = {
+  cmd = {"jdtls"},
   settings = {
     java = {
       configuration = {
         runtimes = {
           {
             name = "JavaSE-25",
-            path = "/home/dtzi/Documents/jdk-25/"
+            path = "/home/tauras/Documents/jdk-25"
           },
           {
             name = "JavaSE-21",
-            path = "/home/dtzi/Documents/jdk-21/"
+            path = "/home/tauras/Documents/jdk-21"
           },
         },
       },
@@ -193,6 +201,12 @@ vim.lsp.config["jdtls"] = {
   },
 }
 vim.lsp.enable("jdtls")
+vim.lsp.config["racket-langserver"] = { 
+  cmd = { "racket", "--lib", "racket-langserver" },
+  filetypes = { "racket", "scheme" },
+  root_markers = {".git" },
+}
+vim.lsp.enable("racket-langserver")
 
 vim.g.mkdp_auto_start = 1
 
