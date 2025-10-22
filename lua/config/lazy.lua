@@ -189,11 +189,11 @@ vim.lsp.config["jdtls"] = {
         runtimes = {
           {
             name = "JavaSE-25",
-            path = "/home/tauras/Documents/jdk-25"
+            path = "~/Documents/jdk-25"
           },
           {
             name = "JavaSE-21",
-            path = "/home/tauras/Documents/jdk-21"
+            path = "~/Documents/jdk-21"
           },
         },
       },
