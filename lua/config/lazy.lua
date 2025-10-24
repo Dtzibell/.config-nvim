@@ -105,7 +105,7 @@ require('nvim-treesitter.configs').setup {
 }
 
 require("themery").setup({
-  themes = {"everforest", "gruvbox", "cyberdream"},
+  themes = {"everforest", "gruvbox", "cyberdream", "silkcircuit", "synthweave"},
   livePreview=true,
 })
 
