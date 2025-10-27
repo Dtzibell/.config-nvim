@@ -89,7 +89,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python", "java", "bash", "xml"},
+  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python", "java", "bash", "xml", "latex"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -109,8 +109,6 @@ require("themery").setup({
   livePreview=true,
 })
 
-vim.treesitter.language.register("xml", "fxml")
-vim.lsp.enable("pyright")
 
 
 local ls = require("luasnip")
@@ -167,20 +165,24 @@ ls.setup{
   enable_autosnippets = true,
   history = true,
 }
-
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})
+
+vim.treesitter.language.register("xml", "fxml")
 vim.filetype.add({
   extension = {fxml = "fxml", racket = ".rkt"},
 })
+
 vim.lsp.config["lemminx"] = {
   filetypes = {"xml", "xsd", "xsl", "xslt", "svg", "fxml" },
 }
 vim.lsp.enable("lemminx")
+
 vim.lsp.config["luals"] = {
   cmd = { 'lua-language-server' },
   filetypes = { "lua" },
 }
 vim.lsp.enable("luals")
+
 vim.lsp.config["jdtls"] = {
   cmd = {"jdtls"},
   settings = {
@@ -201,12 +203,27 @@ vim.lsp.config["jdtls"] = {
   },
 }
 vim.lsp.enable("jdtls")
+
 vim.lsp.config["racket-langserver"] = { 
   cmd = { "racket", "--lib", "racket-langserver" },
   filetypes = { "racket", "scheme" },
   root_markers = {".git" },
 }
 vim.lsp.enable("racket-langserver")
+
+vim.lsp.config["rust-analyzer"] = {
+  cmd = { "rust-analyzer" },
+  filetypes = { "rust" },
+}
+vim.lsp.enable("rust-analyzer")
+
+vim.lsp.enable("pyright")
+
+-- vim.lsp.config["texlab"] = {
+--   cmd = { "texlab" },
+--   filetypes = { "tex" },
+-- }
+vim.lsp.enable("texlab")
 
 vim.g.mkdp_auto_start = 1
 
