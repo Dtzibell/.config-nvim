@@ -60,9 +60,17 @@ return {
     }
 )
 ),
-  s({trig = (vim.g.mapleader or ";") .. "sup", snippetType = "autosnippet"},
+  s({trig = (vim.g.mapleader or ";") .. "sup", snippetType = "autosnippet", wordTrig = false},
     fmta([[
     ^{<>}
+    ]], {
+      i(1),
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "sub", snippetType = "autosnippet", wordTrig = false},
+    fmta([[
+    _{<>}
     ]], {
       i(1),
     }
