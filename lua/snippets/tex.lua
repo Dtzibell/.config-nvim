@@ -93,4 +93,11 @@ return {
     }
 )
 ),
+  s({trig = (vim.g.mapleader or ";") .. "eq", snippetType = "autosnippet"},
+    fmta([[
+    \equiv
+    ]], {
+    }
+)
+),
 }
