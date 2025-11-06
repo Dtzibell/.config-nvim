@@ -9,6 +9,8 @@ return {
   t"\\delta"),
   s({ trig = (vim.g.mapleader or ";") .. "om", snippetType = "autosnippet"},
   t"\\omega"),
+  s({ trig = (vim.g.mapleader or ";") .. "pi", snippetType = "autosnippet"},
+  t"\\pi"),
   s({ trig = (vim.g.mapleader or ";") .. "Sg", snippetType = "autosnippet"},
   t"\\Sigma"),
   s({ trig = (vim.g.mapleader or ";") .. "Bt", snippetType = "autosnippet"},
@@ -19,6 +21,8 @@ return {
   t"\\Delta"),
   s({ trig = (vim.g.mapleader or ";") .. "Om", snippetType = "autosnippet"},
   t"\\Omega"),
+  s({ trig = (vim.g.mapleader or ";") .. "pi", snippetType = "autosnippet"},
+  t"\\Pi"),
   s({ trig = "\\sigmaM", snippetType = "autosnippet"},
   t"$\\sigma$"),
   s({ trig = "\\betaM", snippetType = "autosnippet"},
@@ -29,6 +33,8 @@ return {
   t[[$\delta$]]),
   s({ trig = "\\omegaM", snippetType = "autosnippet"},
   t[[$\omega$]]),
+  s({ trig = "\\piM", snippetType = "autosnippet"},
+  t[[$\pi$]]),
   s({ trig = "\\SigmaM", snippetType = "autosnippet"},
   t[[$\Sigma$]]),
   s({ trig = "\\BetaM", snippetType = "autosnippet"},
@@ -39,11 +45,21 @@ return {
   t[[$\Delta$]]),
   s({ trig = "\\OmegaM", snippetType = "autosnippet"},
   t[[$\Omega$]]),
-  s({trig = (vim.g.mapleader or ";") .. "M", snippetType = "autosnippet"},
+  s({ trig = "\\PiM", snippetType = "autosnippet"},
+  t[[$\Pi$]]),
+  s({trig = (vim.g.mapleader or ";") .. "m", snippetType = "autosnippet"},
   fmta("$<>$", {i(1)})),
-  s({trig = (vim.g.mapleader or ";") .. "sup", snippetType = "autosnippet"},
-  fmta("^<>", {i(1)})),
-  s({trig = (vim.g.mapleader or ";") .. "sub", snippetType = "autosnippet"},
-  fmta("_<>", {i(1)})),
-  
+  s({trig = (vim.g.mapleader or ";") .. "sup", snippetType = "autosnippet", wordTrig = false},
+  fmta("^{<>}", {i(1)})),
+  s({trig = (vim.g.mapleader or ";") .. "sub", snippetType = "autosnippet", wordTrig = false},
+  fmta("_{<>}", {i(1)})),
+  s({trig = (vim.g.mapleader or ";") .. "frac", snippetType = "autosnippet"},
+    fmta([[
+    \frac{<>}{<>}
+    ]], {
+      i(1),
+      i(2),
+    }
+)
+),
 }
