@@ -86,10 +86,11 @@ return {
 ),
   s({trig = (vim.g.mapleader or ";") .. "sum", snippetType = "autosnippet"},
     fmta([[
-    \sum_{<>}^{<>}
+    \sum_{<>}^{<>}{<>}
     ]], {
       i(1),
       i(2),
+      i(3),
     }
 )
 ),
