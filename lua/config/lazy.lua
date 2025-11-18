@@ -65,6 +65,33 @@ vim.opt.scrolloff = 5
 vim.opt.splitright = true -- where to split the buffers
 vim.opt.virtualedit = onemore -- should allow the cursor to move one character beyond the end of the line, but does not
 vim.opt.visualbell = true
+vim.opt.winblend = 29
+local function make_transparent()
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+  
+  vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+  vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+  vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
+  vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+  
+  vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+  vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
+  vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none" })
+  
+  vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+  vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none" })
+end
+
+make_transparent()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = make_transparent
+})
+
 -- 
 -- Setup lazy.nvim
 require("lazy").setup({
