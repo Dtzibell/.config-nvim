@@ -66,6 +66,8 @@ vim.opt.splitright = true -- where to split the buffers
 vim.opt.virtualedit = onemore -- should allow the cursor to move one character beyond the end of the line, but does not
 vim.opt.visualbell = true
 vim.opt.winblend = 29
+
+vim.opt.backup = false
 local function make_transparent()
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -256,3 +258,4 @@ vim.g.mkdp_auto_start = 1
 
 vim.keymap.set("n", "gd", "<cmd> lua vim.lsp.buf.definition() <CR>") 
 vim.keymap.set("n", "gD", "<cmd> lua vim.lsp.buf.declaration() <CR>")
+
