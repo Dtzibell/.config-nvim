@@ -246,6 +246,13 @@ vim.lsp.config["rust-analyzer"] = {
 }
 vim.lsp.enable("rust-analyzer")
 
+vim.lsp.config["pyright"] = {
+  settings = {
+    python = {
+      pythonPath = ".venv/bin/python"
+    }
+  }
+}
 vim.lsp.enable("pyright")
 
 -- vim.lsp.config["texlab"] = {
@@ -258,4 +265,7 @@ vim.g.mkdp_auto_start = 1
 
 vim.keymap.set("n", "gd", "<cmd> lua vim.lsp.buf.definition() <CR>") 
 vim.keymap.set("n", "gD", "<cmd> lua vim.lsp.buf.declaration() <CR>")
-
+vim.g.vimtex_compiler_method = 'latexmk' -- should be set by default though
+vim.g.vimtex_compiler_latexmk_engines = {
+  _ = '-pdflatex',
+}
