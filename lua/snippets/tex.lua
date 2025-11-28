@@ -1,5 +1,5 @@
 return {
-  s({trig = (vim.g.mapleader or ";") .. "begin", snippetType = "autosnippet"},
+  s({trig = (vim.g.mapleader or ";") .. "bg", snippetType = "autosnippet"},
     fmta([[
     \begin{<>}
 
@@ -7,6 +7,20 @@ return {
     ]], {
       i(1),
       rep(1),
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "ra", snippetType = "autosnippet"},
+    fmta([[
+    \rightarrow
+    ]], {
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "la", snippetType = "autosnippet"},
+    fmta([[
+    \leftarrow
+    ]], {
     }
 )
 ),

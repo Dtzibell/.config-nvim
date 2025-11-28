@@ -34,14 +34,21 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+local wrap_enabled = {"md", "tex"}
 
-if buffer_ft ~= ".md" then
-  vim.opt.wrap = true
-else
+function wrap(files_ext)
+  for i, item in ipairs(wrap_enabled) do
+    if buffer_ft == item then
+      vim.opt.wrap=true
+      return true
+    end
+  end
   vim.opt.wrap = false
   vim.opt.colorcolumn = "80"
+  return true
 end
-
+wrap(wrap_enabled)
+  
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
