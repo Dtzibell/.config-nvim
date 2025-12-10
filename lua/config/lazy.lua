@@ -35,12 +35,21 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-if buffer_ft ~= ".md" then
-  vim.opt.wrap = true
-else
+function wrap(buffer_ft)
+  wrapped_files = {"md", "tex"}
+  print(buffer_ft)
+  for i, ft in ipairs(wrapped_files) do 
+    if buffer_ft == ft then
+      vim.opt.wrap = true
+      return
+    end
+  end
   vim.opt.wrap = false
   vim.opt.colorcolumn = "80"
+  return
 end
+
+wrap(buffer_ft)
 
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
@@ -267,5 +276,5 @@ vim.keymap.set("n", "gd", "<cmd> lua vim.lsp.buf.definition() <CR>")
 vim.keymap.set("n", "gD", "<cmd> lua vim.lsp.buf.declaration() <CR>")
 vim.g.vimtex_compiler_method = 'latexmk' -- should be set by default though
 vim.g.vimtex_compiler_latexmk_engines = {
-  _ = '-pdflatex',
+  _ = '-lualatex',
 }

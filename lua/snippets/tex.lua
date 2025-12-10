@@ -1,8 +1,7 @@
 return {
-  s({trig = (vim.g.mapleader or ";") .. "begin", snippetType = "autosnippet"},
+  s({trig = (vim.g.mapleader or ";") .. "bg", snippetType = "autosnippet"},
     fmta([[
     \begin{<>}
-
     \end{<>}
     ]], {
       i(1),
@@ -13,6 +12,14 @@ return {
   s({trig = (vim.g.mapleader or ";") .. "m", snippetType = "autosnippet"},
     fmta([[
     $<>$
+    ]], {
+      i(1),
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "vb", snippetType = "autosnippet"},
+    fmta([[
+    \verb^<>^
     ]], {
       i(1),
     }
@@ -78,7 +85,7 @@ return {
 ),
   s({trig = (vim.g.mapleader or ";") .. "pgr", snippetType = "autosnippet"},
     fmta([[
-    \paragraph{<>}
+    \paragraph{<>}\mbox{}
     ]], {
       i(1),
     }
@@ -98,6 +105,36 @@ return {
     fmta([[
     \equiv
     ]], {
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "ra", snippetType = "autosnippet"},
+    fmta([[
+    \rightarrow
+    ]], {
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "la", snippetType = "autosnippet"},
+    fmta([[
+    \leftarrow
+    ]], {
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "fig", snippetType = "autosnippet"},
+    fmta([[
+    \begin{figure}
+      \centering
+      \includegraphics[width=<>\textwidth]{<>}
+      \caption{<>}
+      \label{fig:<>}
+    \end{figure}
+    ]], {
+      i(1),
+      i(2),
+      i(3),
+      i(4),
     }
 )
 ),
