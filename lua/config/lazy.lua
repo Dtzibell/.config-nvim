@@ -37,7 +37,6 @@ vim.opt.smartindent = true
 
 function wrap(buffer_ft)
   wrapped_files = {"md", "tex"}
-  print(buffer_ft)
   for i, ft in ipairs(wrapped_files) do 
     if buffer_ft == ft then
       vim.opt.wrap = true
@@ -102,6 +101,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = make_transparent
 })
+
+vim.keymap.set("n", "<Leader>ot", "<cmd>vsplit term://zsh<CR>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- 
 -- Setup lazy.nvim
@@ -270,7 +272,7 @@ vim.lsp.enable("pyright")
 -- }
 vim.lsp.enable("texlab")
 
-vim.g.mkdp_auto_start = 1
+-- vim.g.mkdp_auto_start = 1 -- autostarts markdown preview
 
 vim.keymap.set("n", "gd", "<cmd> lua vim.lsp.buf.definition() <CR>") 
 vim.keymap.set("n", "gD", "<cmd> lua vim.lsp.buf.declaration() <CR>")

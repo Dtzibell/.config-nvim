@@ -62,4 +62,6 @@ return {
     }
 )
 ),
+  s({trig = (vim.g.mapleader or ";") .. "log", snippetType = "autosnippet", wordTrig = false},
+  fmta("\\log{<>}", {i(1)})),
 }
