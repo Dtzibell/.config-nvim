@@ -76,6 +76,7 @@ vim.opt.visualbell = true
 vim.opt.winblend = 29
 
 vim.opt.backup = false
+
 local function make_transparent()
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -94,9 +95,7 @@ local function make_transparent()
   vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none" })
 end
-
 make_transparent()
-
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = make_transparent
@@ -274,8 +273,11 @@ vim.lsp.enable("texlab")
 
 -- vim.g.mkdp_auto_start = 1 -- autostarts markdown preview
 
-vim.keymap.set("n", "gd", "<cmd> lua vim.lsp.buf.definition() <CR>") 
-vim.keymap.set("n", "gD", "<cmd> lua vim.lsp.buf.declaration() <CR>")
+local function vsplit_definition()
+  vim.cmd("vsplit")
+  vim.cmd("lua vim.lsp.buf.definition()")
+end
+vim.keymap.set("n", "gd", vsplit_definition)
 vim.g.vimtex_compiler_method = 'latexmk' -- should be set by default though
 vim.g.vimtex_compiler_latexmk_engines = {
   _ = '-lualatex',
