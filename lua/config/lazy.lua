@@ -282,3 +282,12 @@ vim.g.vimtex_compiler_method = 'latexmk' -- should be set by default though
 vim.g.vimtex_compiler_latexmk_engines = {
   _ = '-lualatex',
 }
+-- formatting of tex files with latexindent.pl
+vim.api.nvim_create_autocmd("FileType", {
+     pattern = "tex",
+     callback = function()
+       vim.opt_local.formatprg = "latexindent.pl"
+       -- mz marks current cursor pos, `z goes to that pos
+       vim.keymap.set("n", "<leader>ft", "mzgggqG`z", { buffer = true })
+     end,
+   })
