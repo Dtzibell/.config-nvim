@@ -35,20 +35,17 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-function wrap(buffer_ft)
-  wrapped_files = {"md", "tex"}
-  for i, ft in ipairs(wrapped_files) do 
-    if buffer_ft == ft then
-      vim.opt.wrap = true
-      return
-    end
-  end
-  vim.opt.wrap = false
-  vim.opt.colorcolumn = "80"
-  return
-end
+vim.opt.wrap = false
+vim.opt.colorcolumn = "80"
+vim.o.spelllang = "en,de"
 
-wrap(buffer_ft)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "tex" },
+  callback = function()
+    vim.o.wrap = true
+    vim.o.spell = true
+  end
+})
 
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
@@ -64,8 +61,8 @@ vim.opt.cursorlineopt = "both"
 vim.opt.gdefault = true -- all matches in a line are substituted by default
 -- vim.opt.guicursor = ""
 vim.opt.ignorecase = true -- ignore case on search by default
-vim.opt.inccommand = split -- opens partial results of replacement in a preview window
-vim.opt.mouse = nvic
+vim.opt.inccommand = "split" -- opens partial results of replacement in a preview window
+vim.opt.mouse = "nvic"
 vim.opt.number = true
 vim.opt.rnu = true
 
@@ -78,32 +75,32 @@ vim.opt.winblend = 29
 vim.opt.backup = false
 
 -- doesnt work very well, some locations are not made transparent
-local function make_transparent()
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-
-  vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-  vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
-  vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
-  vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
-
-  vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none" })
-
-  vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-  vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none" })
-end
+-- local function make_transparent()
+--   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+--
+--   vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+--
+--   vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none" })
+--
+--   vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none" })
+-- end
 -- make_transparent()
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   pattern = "*",
 --   callback = make_transparent
 -- })
 
-vim.keymap.set("n", "<Leader>ot", "<cmd>vsplit term://zsh<CR>")
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("n", "<Leader>ot", "<cmd>vsplit term://zsh<CR>") -- opens terminal in new vertically split buffer
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- escape exits terminal mode
 
 -- 
 -- Setup lazy.nvim
@@ -267,12 +264,12 @@ vim.lsp.config["jdtls"] = {
 }
 vim.lsp.enable("jdtls")
 
-vim.lsp.config["racket-langserver"] = { 
-  cmd = { "racket", "--lib", "racket-langserver" },
-  filetypes = { "racket", "scheme" },
-  root_markers = {".git" },
-}
-vim.lsp.enable("racket-langserver")
+-- vim.lsp.config["racket-langserver"] = { 
+--   cmd = { "racket", "--lib", "racket-langserver" },
+--   filetypes = { "racket", "scheme" },
+--   root_markers = {".git" },
+-- }
+-- vim.lsp.enable("racket-langserver")
 
 -- vim.lsp.config["rust-analyzer"] = {
 --     cmd = { "rust-analyzer" },
@@ -280,18 +277,15 @@ vim.lsp.enable("racket-langserver")
 --   }
 -- vim.lsp.enable("rust-analyzer")
 
-vim.lsp.config["pyright"] = {
+vim.lsp.config["ty"] = {
   settings = {
-    python = {
-      pythonPath = ".venv/bin/python"
-    }
-  }
+    ty = {
+    },
+  },
 }
-vim.lsp.enable("pyright")
+vim.lsp.enable("ty")
 
 vim.lsp.enable("texlab")
-
-vim.g.mkdp_auto_start = 1 -- autostarts markdown preview
 
 local function split_and_jump()
   local word = vim.fn.expand("<cword>")
@@ -322,9 +316,10 @@ vim.keymap.set("n", "<leader>ft", "mzgggqG`z", { buffer = true })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
-    vim.opt_local.formatprg = "latexindent.pl"
+    vim.bo.formatprg = "latexindent.pl"
   end,
 })
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "rust",
   callback = function()
