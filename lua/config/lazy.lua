@@ -315,19 +315,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- mz marks current cursor pos, `z goes to that pos
+vim.keymap.set("n", "<leader>ft", "mzgggqG`z", { buffer = true })
 
 -- formatting of tex files with latexindent.pl
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
     vim.opt_local.formatprg = "latexindent.pl"
-    -- mz marks current cursor pos, `z goes to that pos
-    vim.keymap.set("n", "<leader>ft", "mzgggqG`z", { buffer = true })
+  end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function()
+    vim.bo.formatprg = "rustfmt --emit stdout"
   end,
 })
 require('lualine').setup {
   options = {
-    icons_enabled = true,
+    icons_enabled = false,
     theme = 'auto',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
@@ -335,10 +341,10 @@ require('lualine').setup {
       statusline = {},
       winbar = {},
     },
-    ignore_focus = {},
+    ignore_focus = {'NvimTree'},
     always_divide_middle = true,
     always_show_tabline = true,
-    globalstatus = true,
+    globalstatus = false,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -359,10 +365,12 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode', 'searchcount'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'fileformat', 'filetype'},
+    lualine_a = {
+      { 'mode', fmt = function(str) return str:sub(1, 2) end, }, 'searchcount',
+    },
+    lualine_b = { { 'branch', icons_enabled = true, }, 'diff' },
+    lualine_c = { 'filename', { '', draw_empty = true, }, },
+    lualine_x = { { '', draw_empty = true, }, 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
