@@ -38,12 +38,16 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 vim.o.spelllang = "en,de"
+vim.o.spellfile = vim.fn.expand("~/.local/share/nvim/site/spell/en.utf-8.add") .. 
+"," .. vim.fn.expand("~/.local/share/nvim/site/spell/de.utf-8.add")
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "tex" },
   callback = function()
     vim.o.wrap = true
     vim.o.spell = true
+    vim.o.spellcapcheck = ""
+    vim.o.colorcolumn = "0"
   end
 })
 
@@ -165,12 +169,9 @@ require('nvim-treesitter.configs').setup {
 
 require("themery").setup({
   themes = {
-    "everforest", 
-    "gruvbox",
-    "cyberdream",
-    "silkcircuit",
     "synthweave",
-    "desert"},
+    "desert",
+  },
   livePreview=true,
 })
 
@@ -319,6 +320,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.formatprg = "latexindent.pl"
   end,
 })
+-- TODO:
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "rust",
@@ -382,3 +384,14 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    require("todo-comments").setup({
+      highlight = {
+        comments_only = false,
+      },
+    })
+  end,
+})
