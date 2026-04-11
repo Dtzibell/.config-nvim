@@ -1,1 +1,0 @@
-return { "ricardoraposo/nightwolf.nvim" }

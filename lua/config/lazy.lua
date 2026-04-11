@@ -26,6 +26,8 @@ vim.g.mapleader = ";"
 vim.g.leader = ";"
 vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<leader>px", vim.cmd.Ex) -- opens netrw
+-- since C-l is now related to tmux pane switching:
+vim.keymap.set("n", "<leader><CR>", "<Cmd>nohlsearch<CR>") 
 
 -- option set up
 vim.opt.tabstop = 2
@@ -42,12 +44,17 @@ vim.o.spellfile = vim.fn.expand("~/.local/share/nvim/site/spell/en.utf-8.add") .
 "," .. vim.fn.expand("~/.local/share/nvim/site/spell/de.utf-8.add")
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "tex" },
+  pattern = { "markdown" },
   callback = function()
     vim.o.wrap = true
     vim.o.spell = true
     vim.o.spellcapcheck = ""
     vim.o.colorcolumn = "0"
+    vim.api.nvim_create_user_command("MdLink", function() 
+      vim.cmd('normal! vi("+y') 
+      local link = vim.fn.getreg('+')
+      vim.fn.jobstart( { 'xdg-open', link }, { detach = true } )
+    end, {})
   end
 })
 
@@ -171,6 +178,7 @@ require("themery").setup({
   themes = {
     "synthweave",
     "desert",
+    "void",
   },
   livePreview=true,
 })
@@ -310,17 +318,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- format the whole file
 -- mz marks current cursor pos, `z goes to that pos
 vim.keymap.set("n", "<leader>ft", "mzgggqG`z", { buffer = true })
 
--- formatting of tex files with latexindent.pl
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
     vim.bo.formatprg = "latexindent.pl"
+    vim.o.wrap = true
+    vim.o.spell = true
+    vim.o.spellcapcheck = ""
+    vim.o.colorcolumn = "0"
   end,
 })
--- TODO:
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "rust",

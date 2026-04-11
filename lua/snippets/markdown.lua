@@ -68,6 +68,8 @@ return {
 ),
   s({trig = (vim.g.mapleader or ";") .. "log", snippetType = "autosnippet", wordTrig = false},
   fmta("\\log{<>}", {i(1)})),
+  s({trig = "\\log{_", snippetType = "autosnippet", wordTrig = false},
+  fmta("\\log_{<>}{<>", {i(1), i(2)})),
   s({trig = (vim.g.mapleader or ";") .. "lnk", snippetType = "autosnippet", wordTrig = false},
   fmta("[<>](<>)", {i(1), i(2)})),
 }

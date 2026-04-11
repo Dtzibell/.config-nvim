@@ -1,2 +1,1 @@
-VS code got annoying
-=====
+# neovim configuration 
