@@ -91,7 +91,7 @@ return {
     }
 )
 ),
-  s({trig = (vim.g.mapleader or ";") .. "log", snippetType = "autosnippet"},
+  s({trig = (vim.g.mapleader or ";") .. "log", snippetType = "autosnippet", wordTrig = false},
     fmta([[
     \log{<>}
     ]], {
@@ -99,7 +99,15 @@ return {
     }
 )
 ),
-  s({trig = (vim.g.mapleader or ";") .. "ln", snippetType = "autosnippet"},
+  s({trig = (vim.g.mapleader or ";") .. "lim", snippetType = "autosnippet", wordTrig = false},
+    fmta([[
+    \lim_{<>}
+    ]], {
+      i(1),
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "ln", snippetType = "autosnippet", wordTrig = false},
     fmta([[
     \ln{<>}
     ]], {

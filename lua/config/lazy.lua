@@ -258,6 +258,7 @@ vim.lsp.enable("luals")
 
 vim.lsp.config["jdtls"] = {
   cmd = {"jdtls"},
+  root_markers = {"pom.xml"},
   settings = {
     java = {
       configuration = {
