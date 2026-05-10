@@ -1,4 +1,13 @@
-return { "zaldih/themery.nvim", lazy = false, config = function()
-  require("themery").setup({
-    -- add the config here
-  }) end }
+
+vim.pack.add({
+  { src = gh("zaldih/themery.nvim")},
+})
+
+require("themery").setup({
+  themes = {
+    "synthweave",
+    "desert",
+    "void",
+  },
+  livePreview=true,
+})

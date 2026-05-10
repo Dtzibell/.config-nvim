@@ -1,1 +1,4 @@
-return { "vyrx-dev/void.nvim" }
+
+vim.pack.add({
+  { src = gh("vyrx-dev/void.nvim")},
+})

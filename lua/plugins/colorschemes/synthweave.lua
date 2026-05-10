@@ -1,1 +1,3 @@
-return { "samharju/synthweave.nvim" }
+vim.pack.add({
+  { src = "samharju/synthweave.nvim" }
+})

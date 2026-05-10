@@ -1,8 +1,7 @@
-return {
-	"nvim-treesitter/nvim-treesitter", 
-	branch = 'master', 
-	lazy = false, 
-	build = ":TSUpdate"
-}
 
-
+vim.pack.add({
+  { src = gh("nvim-treesitter/nvim-treesitter"), version = "main" },
+})
+require("nvim-treesitter").install({
+  {"rust", "java", "python", "lua", "latex"},
+})
