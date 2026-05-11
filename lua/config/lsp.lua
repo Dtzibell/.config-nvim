@@ -6,13 +6,11 @@ vim.filetype.add({
 vim.lsp.config["lemminx"] = {
   filetypes = {"xml", "xsd", "xsl", "xslt", "svg", "fxml" },
 }
-vim.lsp.enable("lemminx")
 
 vim.lsp.config["luals"] = {
   cmd = { 'lua-language-server' },
   filetypes = { "lua" },
 }
-vim.lsp.enable("luals")
 
 vim.lsp.config["jdtls"] = {
   cmd = {"jdtls"},
@@ -30,20 +28,17 @@ vim.lsp.config["jdtls"] = {
     },
   },
 }
-vim.lsp.enable("jdtls")
 
--- vim.lsp.config["racket-langserver"] = { 
---   cmd = { "racket", "--lib", "racket-langserver" },
---   filetypes = { "racket", "scheme" },
---   root_markers = {".git" },
--- }
--- vim.lsp.enable("racket-langserver")
+vim.lsp.config["racket-langserver"] = { 
+  cmd = { "racket", "--lib", "racket-langserver" },
+  filetypes = { "racket", "scheme" },
+  root_markers = {".git" },
+}
 
--- vim.lsp.config["rust-analyzer"] = {
---     cmd = { "rust-analyzer" },
---     filetypes = { "rust" },
---   }
--- vim.lsp.enable("rust-analyzer")
+vim.lsp.config["rust-analyzer"] = {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+  }
 
 vim.lsp.config["ty"] = {
   settings = {
@@ -51,6 +46,13 @@ vim.lsp.config["ty"] = {
     },
   },
 }
-vim.lsp.enable("ty")
 
-vim.lsp.enable("texlab")
+vim.lsp.enable({
+  "lemminx",
+  "luals",
+  "jdtls",
+  "texlab",
+  "ty",
+  "racket-langserver",
+  "rust-analyzer",
+})
