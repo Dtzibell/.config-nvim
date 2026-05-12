@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()
 		require("blink.cmp").setup({
 			keymap = { preset = "default" },
+      snippets = { preset = "luasnip" },
 			appearance = {
 				nerd_font_variant = "mono",
 				use_nvim_cmp_as_default = true,

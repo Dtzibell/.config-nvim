@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader><CR>", "<Cmd>nohlsearch<CR>", {desc = "Clears search highlights."}) 
-map("n", "<leader>so", "<Cmd>so ~/.config/nvim-next/init.lua<CR>", {desc = "Sources the config file"})
+map("n", "<leader>so", "<Cmd>so ~/.config/nvim/init.lua<CR>", {desc = "Sources the config file"})
 map("n", "<Leader>ot", "<cmd>vsplit term://zsh<CR>",  {desc = "Places a terminal window in a vertical split"}) 
 map("t", "<Esc>", "<C-\\><C-n>", {desc = "Allows using escape to exit insert mode in the terminal"}) 
 

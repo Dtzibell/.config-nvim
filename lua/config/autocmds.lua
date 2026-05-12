@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt.spelllang = "en,de"
     vim.o.spellcapcheck = ""
-    opt.spellfile = vim.fn.expand("~/.local/share/nvim/site/spell/en.utf-8.add") .. 
+    vim.opt.spellfile = vim.fn.expand("~/.local/share/nvim/site/spell/en.utf-8.add") .. 
     "," .. vim.fn.expand("~/.local/share/nvim/site/spell/de.utf-8.add")
     vim.api.nvim_create_user_command("MdLink", function() 
       vim.cmd('normal! vi("+y') 
