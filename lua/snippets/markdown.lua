@@ -49,24 +49,26 @@ return {
   s({trig = (vim.g.mapleader or ";") .. "sub", snippetType = "autosnippet", wordTrig = false},
   fmta("_{<>}", {i(1)})),
   s({trig = (vim.g.mapleader or ";") .. "frac", snippetType = "autosnippet", wordTrig = false},
-    fmta([[
-    \frac{<>}{<>}
-    ]], {
-      i(1),
-      i(2),
-    }
+  fmta([[
+  \frac{<>}{<>}
+  ]], {
+    i(1),
+    i(2),
+  }
 )
 ),
-  s({trig = (vim.g.mapleader or ";") .. "log", snippetType = "autosnippet", wordTrig = false},
-  fmta("\\log{<>}", {i(1)})),
-  s({trig = "\\log{_", snippetType = "autosnippet", wordTrig = false},
-  fmta("\\log_{<>}{<>", {i(1), i(2)})),
-  s({trig = (vim.g.mapleader or ";") .. "lnk", snippetType = "autosnippet", wordTrig = false},
-  fmta("[<>](<>)", {i(1), i(2)})),
-  s({trig = (vim.g.mapleader or ";") .. "sum", snippetType = "autosnippet", wordTrig = false},
-  fmta("\\sum{<>}", {i(1)})),
-  s({trig = "\\sum{_", snippetType = "autosnippet", wordTrig = false},
-  fmta("\\sum_{<>}^{<>}{<>", {i(1), i(2), i(3)})),
-  s({trig = "\\sum{^", snippetType = "autosnippet", wordTrig = false},
-  fmta("\\sum_{<>}^{<>}{<>", {i(1), i(2), i(3)})),
+s({trig = (vim.g.mapleader or ";") .. "log", snippetType = "autosnippet", wordTrig = false},
+fmta("\\log{<>}", {i(1)})),
+s({trig = "\\log{_", snippetType = "autosnippet", wordTrig = false},
+fmta("\\log_{<>}{<>", {i(1), i(2)})),
+s({trig = (vim.g.mapleader or ";") .. "lnk", snippetType = "autosnippet", wordTrig = false},
+fmta("[<>](<>)", {i(1), i(2)})),
+s({trig = (vim.g.mapleader or ";") .. "sum", snippetType = "autosnippet", wordTrig = false},
+fmta("\\sum{<>}", {i(1)})),
+s({trig = "\\sum{_", snippetType = "autosnippet", wordTrig = false},
+fmta("\\sum_{<>}^{<>}{<>", {i(1), i(2), i(3)})),
+s({trig = "\\sum{^", snippetType = "autosnippet", wordTrig = false},
+fmta("\\sum_{<>}^{<>}{<>", {i(1), i(2), i(3)})),
+s({trig = (vim.g.mapleader or ";") .. "bin", snippetType = "autosnippet", wordTrig = false},
+fmta("\\binom{<>}{<>}", {i(1),i(2)})),
 }
