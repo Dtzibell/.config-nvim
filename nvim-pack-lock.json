@@ -59,6 +59,10 @@
       "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
       "src": "https://www.github.com/sphamba/smear-cursor.nvim"
     },
+    "solarized.nvim": {
+      "rev": "a8085e29883ddcfb39bd46197eb32ef00df05368",
+      "src": "https://www.github.com/maxmx03/solarized.nvim"
+    },
     "synthweave": {
       "rev": "0520bc260674745cdd3b5465f322de5731217dc6",
       "src": "https://www.github.com/samharju/synthweave.nvim"

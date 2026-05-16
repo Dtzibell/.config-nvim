@@ -1,3 +1,3 @@
 vim.pack.add({
-  { src = "samharju/synthweave.nvim" }
+  { src = gh("samharju/synthweave.nvim") }
 })

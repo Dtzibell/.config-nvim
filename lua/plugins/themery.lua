@@ -8,6 +8,10 @@ require("themery").setup({
     "synthweave",
     "desert",
     "void",
+    { name = "Solarized Light", colorscheme = "solarized", before = [[
+    vim.o.background="light"
+    ]],
   },
-  livePreview=true,
+},
+livePreview=true,
 })
