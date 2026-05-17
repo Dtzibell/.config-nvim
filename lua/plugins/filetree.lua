@@ -4,5 +4,5 @@ vim.pack.add({
 })
 require("nvim-tree").setup({})
 
-local nt = nvim_tree.api
+-- local nt = nvim_tree.api
 

@@ -1,8 +1,11 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
+  nested = true,
   callback = function()
     vim.opt.spelllang = "en,de"
     vim.o.spellcapcheck = ""
+    vim.o.background = "light"
+    vim.cmd.colorscheme("solarized")
     vim.opt.spellfile = vim.fn.expand("~/.local/share/nvim/site/spell/en.utf-8.add") .. 
     "," .. vim.fn.expand("~/.local/share/nvim/site/spell/de.utf-8.add")
     vim.api.nvim_create_user_command("MdLink", function() 
@@ -14,20 +17,19 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- thats a bandaid solution for spelling, should be rethought.
-vim.api.nvim_create_autocmd("BufLeave", {
-  pattern = "*.md",
-  callback = function()
-    vim.o.wrap = false
-    vim.o.spell = false
-    vim.o.colorcolumn = "80"
-  end,
-})
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "*.md",
-  callback = function()
-    vim.o.wrap = true
-    vim.o.spell = true
-    vim.o.colorcolumn = "0"
+  pattern = "*",
+  callback = function(args)
+    local ext = vim.fn.fnamemodify(args.file, ":e")
+    if ext ~= "md" and ext ~= "tex" then
+      vim.o.wrap = false
+      vim.o.spell = false
+      vim.o.colorcolumn = "80"
+    else
+      vim.o.wrap = true
+      vim.o.spell = true
+      vim.o.colorcolumn = ""
+    end
   end,
 })
 
@@ -46,10 +48,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
     vim.bo.formatprg = "latexindent.pl"
-    vim.o.wrap = true
-    vim.o.spell = true
-    vim.o.spellcapcheck = ""
-    vim.o.colorcolumn = "0"
   end,
 })
 
