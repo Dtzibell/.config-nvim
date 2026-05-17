@@ -46,3 +46,7 @@ vim.treesitter.language.register("xml", "fxml")
 vim.filetype.add({
   extension = {fxml = "fxml", racket = "rkt"},
 })
+
+-- disables netrw in favour of nvim-tree
+-- vim.g.loaded_netrw       = 1
+-- vim.g.loaded_netrwPlugin = 1

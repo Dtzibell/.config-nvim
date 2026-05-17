@@ -1,11 +1,11 @@
-require("config.keymaps")
 require("config.options")
 require("config.autocmds")
 require("config.lsp")
 require('vim._core.ui2').enable({})
 
 gh = function(x) return "https://www.github.com/" .. x end
--- require("plugins")
+require("plugins")
+require("config.keymaps")
 
 -- vim.cmd("colorscheme synthweave")
 
