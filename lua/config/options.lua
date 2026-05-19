@@ -30,14 +30,14 @@ opt.rnu = true
 
 opt.scrolloff = 5
 opt.splitright = true -- where to split the buffers
-opt.virtualedit = onemore -- should allow the cursor to move one character beyond the end of the line, but does not
+opt.virtualedit = "onemore" -- should allow the cursor to move one character beyond the end of the line
 opt.visualbell = true
 
 opt.backup = false
 
-opt.foldcolumn = "3"
-opt.foldopen = "all"
-opt.foldclose = "all"
+-- opt.foldcolumn = "0" -- autofolds all indentations of levels >0
+-- opt.foldopen = "all"
+-- opt.foldclose = "all"
 opt.foldmethod = "expr"
 opt.foldlevel = 1
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -48,5 +48,5 @@ vim.filetype.add({
 })
 
 -- disables netrw in favour of nvim-tree
--- vim.g.loaded_netrw       = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw       = 1
+vim.g.loaded_netrwPlugin = 1

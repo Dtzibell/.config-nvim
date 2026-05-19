@@ -71,4 +71,10 @@ s({trig = "\\sum{^", snippetType = "autosnippet", wordTrig = false},
 fmta("\\sum_{<>}^{<>}{<>", {i(1), i(2), i(3)})),
 s({trig = (vim.g.mapleader or ";") .. "bin", snippetType = "autosnippet", wordTrig = false},
 fmta("\\binom{<>}{<>}", {i(1),i(2)})),
+s({trig = (vim.g.mapleader or ";") .. "vb", snippetType = "autosnippet", wordTrig = false},
+fmta([[
+```
+<>
+```
+]], {i(1)})),
 }

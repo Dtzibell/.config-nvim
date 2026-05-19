@@ -7,5 +7,3 @@ require("config.keymaps")
 require("config.autocmds")
 require("config.lsp")
 
--- vim.cmd("colorscheme synthweave")
-
