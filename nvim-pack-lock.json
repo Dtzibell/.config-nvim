@@ -26,6 +26,10 @@
       "rev": "1db9093915eb16ba2473cfb8d343ace5ee04130a",
       "src": "https://www.github.com/vhyrro/luarocks.nvim"
     },
+    "markdown-preview.nvim": {
+      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+      "src": "https://www.github.com/iamcco/markdown-preview.nvim"
+    },
     "mini.icons": {
       "rev": "bac6317300e205335df425296570d84322730067",
       "src": "https://www.github.com/nvim-mini/mini.icons"
@@ -50,6 +54,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://www.github.com/nvim-lua/plenary.nvim"
+    },
+    "render-latex.nvim": {
+      "rev": "b1ede6ebbff37e4a2669484782551724a5043763",
+      "src": "https://github.com/techwizrd/render-latex.nvim"
     },
     "render-markdown.nvim": {
       "rev": "629eb9533ec989d9d5c6cab8f3ad5372422c24e0",

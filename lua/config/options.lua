@@ -35,11 +35,11 @@ opt.visualbell = true
 
 opt.backup = false
 
--- opt.foldcolumn = "0" -- autofolds all indentations of levels >0
--- opt.foldopen = "all"
--- opt.foldclose = "all"
+opt.foldcolumn = "3" -- autofolds all indentations of levels >0
+opt.foldopen = "all"
+opt.foldclose = "all"
 opt.foldmethod = "expr"
-opt.foldlevel = 1
+opt.foldlevel = 3
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.treesitter.language.register("xml", "fxml")
@@ -48,5 +48,5 @@ vim.filetype.add({
 })
 
 -- disables netrw in favour of nvim-tree
-vim.g.loaded_netrw       = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

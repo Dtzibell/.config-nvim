@@ -2,6 +2,9 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
   nested = true,
   callback = function()
+    vim.o.wrap = true
+    vim.o.spell = true
+    vim.o.colorcolumn = ""
     vim.opt.spelllang = "en,de"
     vim.o.spellcapcheck = ""
     vim.o.background = "light"
