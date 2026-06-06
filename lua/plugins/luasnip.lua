@@ -1,4 +1,3 @@
-
 vim.pack.add({
   { src = gh("L3MON4D3/LuaSnip"), version = vim.version.range("v2.*")},
 })
