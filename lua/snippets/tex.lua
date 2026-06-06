@@ -198,4 +198,20 @@ return {
     }
 )
 ),
+  s({trig = (vim.g.mapleader or ";") .. "it", snippetType = "autosnippet"},
+    fmta([[
+    \textit{<>}
+    ]], {
+      i(1),
+    }
+)
+),
+  s({trig = (vim.g.mapleader or ";") .. "sec", snippetType = "autosnippet"},
+    fmta([[
+    \section{<>}
+    ]], {
+      i(1),
+    }
+)
+),
 }

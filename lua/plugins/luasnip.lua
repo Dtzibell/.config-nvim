@@ -23,6 +23,7 @@ ls.setup{
   keep_roots = true,
   link_children = true,
   link_roots = true,
+  exit_roots = true,
 
   update_events = "TextChanged, TextChangedI",
   enable_autosnippets = true,
