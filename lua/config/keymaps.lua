@@ -24,10 +24,10 @@ local function split_and_jump()
   end
   vim.cmd("vsplit | tjump ".. word)
 end
-map("n", "gd", split_and_jump, {
-  desc = "vertically splits the window and jumps to the ctag of the word under the cursor",
-})
+-- map("n", "gd", split_and_jump, {
+--   desc = "vertically splits the window and jumps to the ctag of the word under the cursor",
+-- })
 
-map("n", "<leader>fmt", "mzgggqG`z", { buffer = true, desc = "Formats a buffer with 'gq'. Either formatexpr or formatprg is used"})
+map("n", "<leader>fmt", "mzgggqG`z", { desc = "Formats a buffer with 'gq'. Either formatexpr or formatprg is used" })
 
 map("n", "<leader>tr", "<Cmd>NvimTreeOpen<CR>", { desc = "Opens NvimTree" })
